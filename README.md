@@ -3,9 +3,9 @@
 
 ## To Dos:
 
-- [ ] Gather the initial bus stations.
-- [ ] Create a Git repo and connect it.
-- [ ] Write a script that uses the Google Maps Places API to extract longitude and latitude for each bus station in the CSV file, and then append the information to each line. 
+- [x] Gather the initial bus stations.
+- [x] Create a Git repo and connect it.
+- [ ] Write a script that uses the Google Maps Places API to extract longitude and latitude for each bus station in the CSV file, and then append the information to each line in the CSV. 
 - [ ] Add the Great-Circle Distance function that will allow distance calculations between two coordinates on the face of the Earth.
 - [ ] Write a script that accepts a place location info as input (from terminal or a text file) using the Google Maps Places API and returns a list of the closest stations within a given distance metric. 
 - [ ] Setup a simple REST API using Flask that can accept a potential location as input (address? query?) and return the closest bus station(s) within a given distance.

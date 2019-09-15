@@ -1,7 +1,8 @@
 # SEE README.MD FOR EXPLANATION
 
 # Import Python Libraries
-import requests
+import requests, json
+from urllib.parse import quote # For cleaning up strings for requests
 
 # Access API key saved outside of git repo
 with open("../dev/PlacesAPI.txt") as api_file:
@@ -10,9 +11,16 @@ with open("../dev/PlacesAPI.txt") as api_file:
 with open("list_of_stations.csv") as stations_file:
         STATIONS = stations_file.readlines()
 
-#print(Stations_Dict)
 
+def getLATnLNG(name):
 
-#response = requests.get("https://maps.googleapis.com/maps/api/geocode/json?The+Varsity")
-#response = requests.get("https://maps.googleapis.com/maps/api/place/findplacefromtext/json?+%20maryland%20UMD")
-#print(response.headers)
+    baseURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?"
+    query = quote(name)
+    request = "{}input={}&inputtype=textquery&fields=geometry&key={}".format(baseURL, query, API_KEY)
+    response = requests.get(request)
+    data = json.loads(response.text)
+    lat = data['candidates'][0]['geometry']['location']['lat']
+    lng = data['candidates'][0]['geometry']['location']['lng']
+    return lat, lng
+
+print(getLATnLNG("Courtyards #500 Maryland"))

@@ -44,7 +44,6 @@ def read_in_stations(the_csv_path):
     return Stations_Dict
 
 
-
 def distance_func(candidate_lon, candidate_lat, station_object):
     # Calculates distance between two GPS coords on the Earth's surface using the Haversine Great-Circle Formula 
     # Credit: Michael Dunn |-> https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points 

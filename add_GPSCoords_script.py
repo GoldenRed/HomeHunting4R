@@ -3,18 +3,12 @@
 # Import Python Libraries
 import requests
 
-# Import Functions and Classes
-from helper_code import *
-
-
 # Access API key saved outside of git repo
 with open("../dev/PlacesAPI.txt") as api_file:
     API_KEY = api_file.read()
 
-# Read
-
-
-All_Stations = read_in_stations("list_of_stations.csv")
+with open("list_of_stations.csv") as stations_file:
+        STATIONS = stations_file.readlines()
 
 #print(Stations_Dict)
 

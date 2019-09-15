@@ -16,14 +16,22 @@
 
 2019-09-15:
     - Came up with the idea.
+
     - Cleaned the copy+pasted files.
+ 
     - Set up the Git repo.
+ 
     - Set up the Google APIs.
+ 
     - Did some initial python stuff.
+ 
+    - Created this README.MD.
+ 
+    - Not necessarily in that order.
 
 
 ## Background:
-Rewina has been looking for a place to stay. She has visited multiple places, but one of the issues is that she hasn't been able to know beforehand if the place is close to a University of Maryland College Park Shuttle Bus Station or not. This project was started to help with that.
+Rewina has been looking for a place to stay. She has visited multiple places, but one of the issues is that she hasn't been able to know beforehand if the place is close to a [University of Maryland College Park Shuttle](https://transportation.umd.edu/) Bus Station or not. This project was started to help with that.
 
 ## Files:
 
@@ -42,7 +50,7 @@ Where the main program development is happening right now.
 ### helper_code.py
 Contains various supplementary functions and classes that can be used by other Python programs.
 
-### add_GPSCoords_scripy.py
+### add_GPSCoords_script.py
 A script that is/was/will be used to supplement the list_of_stations file with GPS coordinates of all the 400-500+ stations in the UMD Shuttle Bus system.
 
 ## Comma-Separated-Value (CSV) Formatting:
@@ -52,7 +60,7 @@ The list_of_stations.csv file makes use of semi-colons to separate the informati
 - The bus station identification number in the NextBus System
 - The bus station number in its respective bus line 
 - The name of the bus station
-- ~~Add the longitutude and latitude values of each station as two semi-colon separated value.~~
+- ~~The longitutude and latitude values of each station as two semi-colon separated value.~~
 
 ## The APIs
 This project makes use of Google's Places API. The API key is private and is saved outside of this git repo.

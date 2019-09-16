@@ -19,7 +19,9 @@ def getLATnLNG(name):
     lng = data['candidates'][0]['geometry']['location']['lng']
     return lat, lng
 
-def returnDistances(lat, lng):
+def returnDistances(gpscoords):
+    lat = gpscoords[0]
+    lng = gpscoords[1]
     distances = []
     for station in All_Stations:
         distances.append((All_Stations[station].get_distance(lat, lng), station))
@@ -38,7 +40,9 @@ def printing_response(distances, address, maxDistance):
         if i > 6:
             break
     if k == 0:
-        print('NO STATIONS WITHIN MAX DISTANCE')
+        print('NO STATIONS WITHIN MAX DISTANCE! Closest:', All_Stations[distances[0][1]].name, "%.2f" % distances[0][0])
+
+
 
 
 
@@ -51,12 +55,14 @@ if __name__ == '__main__':
     # Read
     All_Stations = read_in_stations("list_of_stations.csv")
 
+    
     with open("list_of_queries.txt") as q:
         addresses = q.read().splitlines()
         print(addresses) 
 
     for address in addresses:
-        printing_response(returnDistances(getLATnLNG(address)), address, max_distance)
         print("-----NEW ADRESS-----")
+        printing_response(returnDistances(getLATnLNG(address)), address, max_distance)
+        
 
 

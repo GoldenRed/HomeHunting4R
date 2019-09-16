@@ -5,9 +5,9 @@
 
 - [x] Gather the initial bus stations.
 - [x] Create a Git repo and connect it.
-- [ ] Write a script that uses the Google Maps Places API to extract longitude and latitude for each bus station in the CSV file, and then append the information to each line in the CSV. 
+- [x] Write a script that uses the Google Maps Places API to extract longitude and latitude for each bus station in the CSV file, and then append the information to each line in the CSV. 
 - [x] Add the Great-Circle Distance function that will allow distance calculations between two coordinates on the face of the Earth.
-- [ ] Write a script that accepts a place location info as input (from terminal or a text file) using the Google Maps Places API and returns a list of the closest stations within a given distance metric. 
+- [x] Write a script that accepts a place location info as input (from terminal or a text file) using the Google Maps Places API and returns a list of the closest stations within a given distance metric. 
 - [ ] Setup a simple REST API using Flask that can accept a potential location as input (address? query?) and return the closest bus station(s) within a given distance.
 - [ ] Create a front end interface to interact with the Flask API.
 - [ ] Add a Google Maps window for graphics.
@@ -28,6 +28,11 @@
     - Created this README.MD.
  
     - Not necessarily in that order.
+
+2019-09-16:
+    - Finished the add_GPSCoords_script and supplemented the CSV file with GPS coordinates. Note that one error was found, specifically for the station "The Enclave". One such station exists on campus, but there is also one coincidentally very close to where Rewina lives currently ("The Enclave Apartments Silver Spring"). The Google Places API incorrectly grabbed the latter and as such said that there existed a shuttle station very close to her current address.
+
+    - It is now possible to fill a text file ("list_of_queries.txt") with rows of adresses and the program will then return whether or not those adresses are close enough within a given metric (e.g., 1 km) to a UMD shuttle bus. The program is called "findClosesStations.py",
 
 
 ## Background:
@@ -51,7 +56,10 @@ Where the main program development is happening right now.
 Contains various supplementary functions and classes that can be used by other Python programs.
 
 ### add_GPSCoords_script.py
-A script that is/was/will be used to supplement the list_of_stations file with GPS coordinates of all the 400-500+ stations in the UMD Shuttle Bus system.
+A script that was used to supplement the list_of_stations file with GPS coordinates of all the 400-500+ stations in the UMD Shuttle Bus system. For some few entries the script's query failed (a try/except block made sure to save those failed files as having 0,0 gps coordinates) but the success rate was close to 99%. Note that there is no actual guarantee that all of the queries were actually successful in returning the CORRECT place and not the coordinates of a different place (i.e., a False True).
+
+### findClosestStations.py
+Reads from the "list_of_queries.txt" file and gets out a range of addresses. It recovers the GPS coordinates of each of the addresses, calculates the distance to all the bus stations and then returns a list of the closest (6 or so) stations to that address (provided that they are within a given maximum distance range).
 
 ## Comma-Separated-Value (CSV) Formatting:
 

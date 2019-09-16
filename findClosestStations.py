@@ -28,31 +28,35 @@ def returnDistances(lat, lng):
     distances.sort()
     return distances
 
-def printing_response(distances, address):
-    print("The 10 closest stations to {}:".format(address))
-    for i in range(10):
-        print(All_Stations[distances[i][1]].name, distances[i][0])
+def printing_response(distances, address, maxDistance):
+    print("The closest stations to {} (max 6 listed):".format(address))
+    k = 0
+    for i in range(len(distances)):
+        if distances[i][0] < maxDistance:
+            print(All_Stations[distances[i][1]].name, "%.2f" % distances[i][0])
+            k = k+1
+        if i > 6:
+            break
+    if k == 0:
+        print('NO STATIONS WITHIN MAX DISTANCE')
 
 
-# Access API key saved outside of git repo
-with open("../dev/PlacesAPI.txt") as api_file:
-    API_KEY = api_file.read()
 
-# Read
-All_Stations = read_in_stations("list_of_stations.csv")
-#Rewy = (39.042800, -76.981400) #11407 July Drive, Silver Spring, MD
-def main():
+if __name__ == '__main__':
+    max_distance = 1 #km, as the crow flies km
+    print('-----PROGRAM START------')
+    with open("../dev/PlacesAPI.txt") as api_file:
+        API_KEY = api_file.read()
+
+    # Read
+    All_Stations = read_in_stations("list_of_stations.csv")
+
     with open("list_of_queries.txt") as q:
         addresses = q.read().splitlines()
         print(addresses) 
 
     for address in addresses:
-        lat, lng = getLATnLNG(address)
-        d = returnDistances(lat, lng)
-        printing_response(d,address)
-        print("________")
-
-main()
-
+        printing_response(returnDistances(getLATnLNG(address)), address, max_distance)
+        print("-----NEW ADRESS-----")
 
 

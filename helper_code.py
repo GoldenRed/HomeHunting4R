@@ -1,14 +1,16 @@
 import math
 
 class Station:
-    def __init__(self, NextBusID, LineID, StationName, lon=0, lat=0):
+    def __init__(self, NextBusID, LineID, StationName, lat=0, lng=0):
         self.ID = NextBusID
         self.fullLineID = []
         self.busLineNum = [] 
         self.busLineStopNum = []
         self.name = StationName
-        self.lon = 0
-        self.lat = 0
+        self.lat = lat
+        self.lng = lng
+        self.rad_lat = math.radians(self.lat)
+        self.rad_lng = math.radians(self.lng)
 
         self.set_line_id(LineID)
 
@@ -26,6 +28,14 @@ class Station:
     def get_id(self):
         return self.ID
 
+    def get_distance(self, other_lat, other_lng):
+        dlat = math.radians(other_lat) - self.rad_lat
+        dlon = math.radians(other_lng) - self.rad_lng  
+        a = math.sin(dlat/2)**2 + math.cos(other_lat) * math.cos(self.rad_lat) * math.sin(dlon/2)**2
+        c = 2 * math.asin(math.sqrt(a)) 
+        r = 6371 # Radius of earth in kilometers. Use 3956 for miles 
+        return c*r
+
 
 def read_in_stations(the_csv_path):
     # Reads in "list_of_stations.csv", a semi-colon CSV file. It then parses it, creates Station objects and then returns a dictionary with all.
@@ -37,8 +47,10 @@ def read_in_stations(the_csv_path):
             NextBusID = split_line[0]
             LineID = split_line[1]
             StationName = split_line[2]
+            StationLat = split_line[3]
+            StationLng = split_line[4]
             if not NextBusID in Stations_Dict:
-                Stations_Dict[NextBusID] = Station(NextBusID, LineID, StationName)
+                Stations_Dict[NextBusID] = Station(NextBusID, LineID, StationName, float(StationLat), float(StationLng))
             else: #For duplicate stations, do this
                 Stations_Dict[NextBusID].add_duplicate(LineID)
     return Stations_Dict

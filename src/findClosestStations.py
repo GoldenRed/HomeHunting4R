@@ -49,7 +49,7 @@ def printing_response(distances, address, maxDistance):
 if __name__ == '__main__':
     max_distance = 1 #km, as the crow flies km
     print('-----PROGRAM START------')
-    with open("../dev/PlacesAPI.txt") as api_file:
+    with open("../../dev/PlacesAPI.txt") as api_file:
         API_KEY = api_file.read()
 
     # Read

@@ -8,7 +8,7 @@
 - [x] Write a script that uses the Google Maps Places API to extract longitude and latitude for each bus station in the CSV file, and then append the information to each line in the CSV. 
 - [x] Add the Great-Circle Distance function that will allow distance calculations between two coordinates on the face of the Earth.
 - [x] Write a script that accepts a place location info as input (from terminal or a text file) using the Google Maps Places API and returns a list of the closest stations within a given distance metric. 
-- [ ] Setup a simple REST API using Flask that can accept a potential location as input (address? query?) and return the closest bus station(s) within a given distance.
+- [x] Setup a simple REST API using Flask that can accept a potential location as input (address? query?) and return the closest bus station(s) within a given distance.
 - [ ] Create a front end interface to interact with the Flask API.
 - [ ] Add a Google Maps window for graphics.
 
@@ -34,6 +34,10 @@
 
     - It is now possible to fill a text file ("list_of_queries.txt") with rows of adresses and the program will then return whether or not those adresses are close enough within a given metric (e.g., 1 km) to a UMD shuttle bus. The program is called "findClosesStations.py",
 
+2019-09-17
+    - Made a Flask_API dir. Created the REST API using Flask. It is now possible to send a get request to address:5000/json/'query'/'num', replacing 'query' with the address/place query and 'num' with the number of stations to respond with. If you want the 10 closest you get the 10 closets, and so on. Though due to the way Jsonify is used on a dictionary to preserve the nice Json format, the responses are not in order so the front end 
+
+    - Reorganized the Git Repo, making the Files tab slightly obsolete and outdated.
 
 ## Background:
 Rewina has been looking for a place to stay. She has visited multiple places, but one of the issues is that she hasn't been able to know beforehand if the place is close to a [University of Maryland College Park Shuttle](https://transportation.umd.edu/) Bus Station or not. This project was started to help with that.
@@ -61,6 +65,9 @@ A script that was used to supplement the list_of_stations file with GPS coordina
 ### findClosestStations.py
 Reads from the "list_of_queries.txt" file and gets out a range of addresses. It recovers the GPS coordinates of each of the addresses, calculates the distance to all the bus stations and then returns a list of the closest (6 or so) stations to that address (provided that they are within a given maximum distance range).
 
+## REGARDING THE FLASK STUFF
+Check out the README.MD for the Flask directory.
+
 ## Comma-Separated-Value (CSV) Formatting:
 
 The list_of_stations.csv file makes use of semi-colons to separate the information in the following way:
@@ -70,7 +77,7 @@ The list_of_stations.csv file makes use of semi-colons to separate the informati
 - The name of the bus station
 - ~~The longitutude and latitude values of each station as two semi-colon separated value.~~
 
-## The APIs
+## The Public APIs
 This project makes use of Google's Places API. The API key is private and is saved outside of this git repo.
 
 

@@ -9,35 +9,53 @@
 - [x] Add the Great-Circle Distance function that will allow distance calculations between two coordinates on the face of the Earth.
 - [x] Write a script that accepts a place location info as input (from terminal or a text file) using the Google Maps Places API and returns a list of the closest stations within a given distance metric. 
 - [x] Setup a simple REST API using Flask that can accept a potential location as input (address? query?) and return the closest bus station(s) within a given distance.
-- [ ] Create a front end interface to interact with the Flask API.
+- [x] Deploy the API to AWS.
+- [x] Create a front end interface to interact with the Flask API.
+- [x] [Deploy the Front-End to AWS](rewina.yared.se).
 - [ ] Add a Google Maps window for graphics.
 
 ## Updates:
 
 2019-09-15:
-    - Came up with the idea.
+- Came up with the idea.
 
-    - Cleaned the copy+pasted files.
+- Cleaned the copy+pasted files.
  
-    - Set up the Git repo.
+- Set up the Git repo.
  
-    - Set up the Google APIs.
+- Set up the Google APIs.
  
-    - Did some initial python stuff.
+- Did some initial python stuff.
  
-    - Created this README.MD.
+- Created this README.MD.
  
-    - Not necessarily in that order.
+- Not necessarily in that order.
 
 2019-09-16:
-    - Finished the add_GPSCoords_script and supplemented the CSV file with GPS coordinates. Note that one error was found, specifically for the station "The Enclave". One such station exists on campus, but there is also one coincidentally very close to where Rewina lives currently ("The Enclave Apartments Silver Spring"). The Google Places API incorrectly grabbed the latter and as such said that there existed a shuttle station very close to her current address.
 
-    - It is now possible to fill a text file ("list_of_queries.txt") with rows of adresses and the program will then return whether or not those adresses are close enough within a given metric (e.g., 1 km) to a UMD shuttle bus. The program is called "findClosesStations.py",
+- Finished the add_GPSCoords_script and supplemented the CSV file with GPS coordinates. Note that one error was found, specifically for the station "The Enclave". One such station exists on campus, but there is also one coincidentally very close to where Rewina lives currently ("The Enclave Apartments Silver Spring"). The Google Places API incorrectly grabbed the latter and as such said that there existed a shuttle station very close to her current address.
 
-2019-09-17
-    - Made a Flask_API dir. Created the REST API using Flask. It is now possible to send a get request to address:5000/json/'query'/'num', replacing 'query' with the address/place query and 'num' with the number of stations to respond with. If you want the 10 closest you get the 10 closets, and so on. Though due to the way Jsonify is used on a dictionary to preserve the nice Json format, the responses are not in order so the front end 
+- It is now possible to fill a text file ("list_of_queries.txt") with rows of adresses and the program will then return whether or not those adresses are close enough within a given metric (e.g., 1 km) to a UMD shuttle bus. The program is called "findClosesStations.py",
 
-    - Reorganized the Git Repo, making the Files tab slightly obsolete and outdated.
+2019-09-17:
+
+- Made a Flask_API dir. Created the REST API using Flask. It is now possible to send a get request to address:5000/json/'query'/'num', replacing 'query' with the address/place query and 'num' with the number of stations to respond with. If you want the 10 closest you get the 10 closets, and so on. Though due to the way Jsonify is used on a dictionary to preserve the nice Json format, the responses are not in order so the front end 
+
+- Reorganized the Git Repo, making the Files tab slightly obsolete and outdated.
+
+2019-09-19
+
+- Deployed the Flask API to AWS Beanstalk! It required that we change Note that the necessary zipfile used fr deployement has been created in a separate directory, so as to avoid my API-key gettng leaked through Github. 
+
+- Initialized the React frontend.
+    
+2019-09-21:
+
+- Followed a [React tutorial by Dev Ed](https://www.youtube.com/watch?v=U9T6YkEDkMo) on Youtube for creating a React app that communicates with a public API. It relies solely on functional components and React Hooks, making it very cool. By following that I was able to quickly set up the React frptnend to my specifications. 
+
+- While the Flask API was deployed to Elastic Beanstalk since it is a "server", the React Frontend was instead compiled into its build form using ``` npm run build ``` and then uploaded and set up on AWS S3 Bucket as a static website.
+
+- I bought the domain for [yared.se](yared.se) at GoDaddy. I have redirected Yared.se to go to my Github Pages site, but the subdomain [Rewina](rewina.yared.se) has been set up to redirect to the AwS 
 
 ## Background:
 Rewina has been looking for a place to stay. She has visited multiple places, but one of the issues is that she hasn't been able to know beforehand if the place is close to a [University of Maryland College Park Shuttle](https://transportation.umd.edu/) Bus Station or not. This project was started to help with that.

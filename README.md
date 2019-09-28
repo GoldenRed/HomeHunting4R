@@ -11,7 +11,7 @@
 - [x] Setup a simple REST API using Flask that can accept a potential location as input (address? query?) and return the closest bus station(s) within a given distance.
 - [x] Deploy the API to AWS.
 - [x] Create a front end interface to interact with the Flask API.
-- [x] [Deploy the Front-End to AWS](rewina.yared.se).
+- [x] [Deploy the Front-End to AWS](http://rewina.yared.se).
 - [ ] Add a Google Maps window for graphics.
 
 ## Updates:

@@ -1,6 +1,5 @@
 
-# HouseHunting4Rewina
-
+# HouseHunting4R
 ## To Dos:
 
 - [x] Gather the initial bus stations.

@@ -13,8 +13,11 @@
 - [x] Create a front end interface to interact with the Flask API.
 - [x] [Deploy the Front-End to AWS](http://rewina.yared.se).
 - [ ] Add a Google Maps window for graphics.
-
+- [ ] Recreate the whole thing serverlessly.
 ## Updates:
+
+2020-08-17:
+- The backend is offline now to save on costs. Only the frontend react part is online. If the need arises I might transform it into a serverless backend.
 
 2019-09-15:
 - Came up with the idea.
